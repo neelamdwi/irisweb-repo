@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iris Classifier</title>
+ </head>
+<body>
+            <h2>Welcome to Iris Classifier</h2>
+            <h3>Enter values of your Iris Flower</h3>
+        <form name="irisform" id="irisform" action = "{{ url_for('irisclassify') }}" method="POST">
+            <table>
+                <tr>
+                    <th><h4>Sepal length</h4> </th>
+                    <td> <input type="text" name="sepallength" > </td>
+                
+                    <td><h4>Sepal width </h4></td>
+                    <td><input type="text" name="sepalwidth" > </td>
+                </tr>
+                <tr>
+                    <td><h4>Petal length</h4></td>
+                    <td><input type="text" name="petallength" > </td>
+                
+                    <td><h4>Petal width</h4></td>
+                    <td><input type="text" name="petalwidth"  > </td>
+                </tr>
+            </table>
+            <input type="hidden" id="forminput" name="forminput"  >           
+            <p><input type="submit" value="Classify"></p>
+                {% if results == '0' or results == '1' or results == '2' %}
+                <h3>Class is {{ results }} for [
+                    {{sepallength}} , {{sepalwidth}}, {{petallength}}, {{petalwidth}} ]
+                
+                </h3>  
+                {% endif %}     
+                {% if results  == '0' %}
+                    <h4>Name is setosa</h4>
+                    <img src="static/images/Iris_setosa.jpg">           
+                {% elif results == '1' %}
+                    <h4>Name is versicolor</h4>
+                    <img src="static/images/Iris_versicolor.jpg">                
+                {% elif results == '2' %}
+                    <h4>Name is virginica</h4>
+                    <img src="static/images/Iris_virginica.jpg">
+                {% endif %}
+            
+        </form>
+</body>
+</html>
